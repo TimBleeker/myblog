@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="prose dark:prose-invert">
+  {{content}}
+</section>
+
+<section class="mt-16"> 
+  <div class="">
+    <h3 class="font-medium text-xl">Latest writing</h3>
+    {% assign diary = site.posts | sort: 'date' | reverse %}  
+    <ul class="mt-5 divide-y dark:divide-zinc-600">
+      {% for post in diary limit: 5 %}
+      <li class="py-2">
+        <a href="{{ post.url }}">
+          <span>{{ post.title }}</span>
+          <time class="block md:inline-block md:ml-3 text-slate-500 dark:text-zinc-500" datetime="{{ post.date | date: "%-d %b %Y" }}">{{ post.date | date: "%-d %b %Y" }}</time>
+        </a></li> 
+      {% endfor %} 
+    </ul>
+  </div>
+  <div class="mt-7">
+    <a href="/writing" class="btn">Visit archive</a>
+  </div>
+</section>
+
