@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class=" ">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{site.description}}"/>
+        <meta property="og:site_name" content="{{ site.title }}">
+        
+        <link rel="author" href="humans.txt" />
+      
+        {% if page.noindex %}
+          <META NAME="ROBOTS" CONTENT="NOINDEX,FOLLOW"/>
+        {% endif %}
+      
+        <!------ Imagery ------>
+        <meta content="/assets/img/android-chrome-512x512.png" property="og:image">
+        <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/android-chrome-512x512.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+        <link rel="manifest" href="/assets/img/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+      
+        <!------ Styling ------>
+        <!-- SCSS -->
+        <!-- <link rel="stylesheet" href="{{ site.baseurl }}/styles.css"> -->
+      
+        <!-- Tailwind CSS -->
+        <link href="{{ site.baseurl }}/dist/output.css" rel="stylesheet">
+       
+      
+        {% if page.excerpt %}
+        <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}"/>
+        {% else %}
+        <meta property="og:description" content="{{ site.title | strip_html | strip_newlines | truncate: 160 }}"/>
+        {% endif %}
+      
+        {% if page.title %}
+        <meta property="og:title" content="{{ page.title }}">
+        <meta property="og:type" content="article">
+        {% else %}
+        <meta property="og:title" content="{{ site.title }}">
+        <meta property="og:type" content="website">
+        {% endif %}
+      
+        {% if page.date %}
+        <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+        <meta property="article:author" content="{{ site.url }}/">
+        {% endif %}
+    
+      
+        <title>
+          {% if page.title == "Index" %}
+            {{site.title}}
+            {% else %}
+            {{page.title}} - {{site.title}}
+          {% endif %}
+        </title>
+      </head>
+      
+  <body class="container mx-auto">  
+
+    <header class="my-10">
+      <div class="flex">
+        <div class="grow">
+          <h1>Tim Bleeker</h1> 
+        </div>
+        <div class="flex-none">
+          <nav>
+            <ul class="space-x-4">
+              {% for item in site.data.menu-main %}
+                  <li class="inline-block">
+                    <a href="{{item.url}}">{{ item.title }}</a>
+                  </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+ 
+ 
+    <main class="">
+      {{content}}
+    </main> 
+ 
+  
+    <footer>&copy; 2023 Tim Bleeker</footer>
+
+  </body>
+</html>
+
